@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shelvin Das - Actor & Director Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function PortfolioApp() {
+
+            const [activeSection, setActiveSection] = useState("home");
+
+            const sections = [
+                { id: "home", label: "Home" },
+                { id: "about", label: "About" },
+                { id: "projects", label: "Projects" },
+                { id: "highlights", label: "Highlights" },
+                { id: "contact", label: "Contact" }
+            ];
+
+            const projects = [
+                {
+                    id: 1,
+                    title: "KOOTHADI",
+                    image: "projects-1.jpeg",
+                    trailer: "https://youtu.be/0njJ5xQyxT0?si=n8Q71KTcchakIynS",
+                    description:
+                        "Based on actual events in Koothadi, Chronicles tells the poignant story of a lost childhood, examining the hardships, sacrifices, and aspirations that shape the life of a Therukoothu Artist as he struggles to preserve tradition, identity, and hope in the face of poverty and social challenges."
+                },
+
+                {
+                    id: 2,
+                    title: "GREY THE SHADES OF HUMANS",
+                    trailer: "https://www.instagram.com/reels/DXb6bDCAO47/",
+                    image: "projects-2.jpeg",
+                    description:
+                        "A gripping Tamil–Sinhala dual-language drama set in Sri Lanka that explores the blurred line between good and evil, following conflicted lives shaped by betrayal, ambition, and survival. Through intense emotions and layered storytelling, it reveals how fear, power, and human desire can transform ordinary lives in unexpected ways."
+                },
+
+                {
+                    id: 3,
+                    title: "WILD BUFFALO",
+                    trailer: "https://youtu.be/7VNkj2J4emA?si=AUDJ24PhOBrK2t1u",
+                    image: "projects-3.jpg",
+                    description:
+                        "In the shadowy wilderness where survival means power, a fierce man known as the “Wild Buffalo” rises against a brutal system that feeds on fear and violence. As loyalty, revenge, and identity collide, his untamed spirit sparks a dangerous rebellion that shakes an entire community."
+                }
+            ];
+
+            const highlightsItems = [
+                {
+                    id: 1,
+                    title: "Behind the Scenes",
+                    label: "Gallery",
+                    image: "gallery.jpeg",
+                    description:
+                        "A collection of memorable moments from stage performances, film productions, rehearsals, festivals, and behind-the-scenes experiences throughout Shelvin Das’s artistic journey."
+                },
+
+                {
+                    id: 2,
+                    title: "ATFIA (Australian Talent & Film International Awards) 2025",
+                    label: "Achievements",
+                    image: "achievements.jpeg",
+                    description:
+                        "At the ATFIA (Australian Talent & Film International Awards) 2025, Jaffna-born actor Shelvin Das received the prestigious Best Actor award in recognition of his powerful performance, marking a significant milestone in his journey as an international stage and screen artist."
+                }
+            ];
+
+            const scrollToSection = (sectionId) => {
+                const section = document.getElementById(sectionId);
+
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            };
+
+            useEffect(() => {
+
+                const handleScroll = () => {
+
+                    sections.forEach((section) => {
+
+                        const element = document.getElementById(section.id);
+
+                        if (element) {
+
+                            const rect = element.getBoundingClientRect();
+
+                            if (rect.top <= 120 && rect.bottom >= 120) {
+                                setActiveSection(section.id);
+                            }
+                        }
+                    });
+                };
+
+                window.addEventListener("scroll", handleScroll);
+
+                return () =>
+                    window.removeEventListener("scroll", handleScroll);
+
+            }, []);
+
+            useEffect(() => {
+
+                const hash = window.location.hash;
+
+                if (hash) {
+
+                    const sectionId = hash.replace("#", "");
+
+                    setTimeout(() => {
+                        scrollToSection(sectionId);
+                    }, 100);
+                }
+
+            }, []);
+
+            return (
+                <>
+                    {/* NAVBAR */}
+
+                    <nav>
+                        <div className="container">
+
+                            <a
+                                href="#home"
+                                className="logo"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    scrollToSection("home");
+                                }}
+                            >
+                                SHELVIN DAS
+                            </a>
+
+                            <ul className="nav-links">
+
+                                {sections.map((section) => (
+
+                                    <li key={section.id}>
+                                        <a
+                                            href={`#${section.id}`}
+                                            className={
+                                                activeSection === section.id
+                                                    ? "active"
+                                                    : ""
+                                            }
+
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                scrollToSection(section.id);
+                                            }}
+                                        >
+                                            {section.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </nav>
+
+                    {/* HOME */}
+
+                    <section id="home">
+                        <div className="container">
+
+                            <div className="hero-image">
+                                <img
+                                    src="hero.jpeg"
+                                    alt="Shelvin Das"
+                                />
+                            </div>
+
+                            <div className="hero-content">
+
+                                <h1>Shelvin Das</h1>
+
+                                <div className="hero-tagline">
+                                    Actor & Producer
+                                </div>
+
+                                <p>
+                                    Shelvin Das is an actor and producer originally born in Sri Lanka who later moved to Australia, carrying with him a deep love for storytelling, culture, and human connection. His journey into acting began through side gigs and independent projects, where he discovered a passion for stepping into characters that feel raw, honest, and unforgettable. Through dedication, persistence, and heart, Shelvin went on to become the lead hero in two feature films ,  a milestone that reflects both his talent and his commitment to the craft.
+                                </p>
+
+                                <div className="cta-buttons">
+
+                                    <a
+                                        href="#about"
+                                        className="btn"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection("about");
+                                        }}
+                                    >
+                                        Learn More
+                                    </a>
+
+                                    <a
+                                        href="#contact"
+                                        className="btn btn-secondary"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            scrollToSection("contact");
+                                        }}
+                                    >
+                                        Get In Touch
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ABOUT */}
+
+                    <section id="about">
+                        <div className="container">
+
+                            <div className="about-content">
+
+                                <div className="hero-image">
+                                    <img
+                                        src="about.jpeg"
+                                        alt="Shelvin Das"
+                                    />
+                                </div>
+
+                                <div className="about-text">
+
+                                    <h2>About Me</h2>
+
+                                    <p>
+                                        As an actor, Shelvin is drawn to stories that explore emotion, identity, resilience, and transformation. He enjoys playing characters with intensity and vulnerability, while also embracing humor, charm, and larger-than-life moments. He brings an energetic, grounded, and collaborative spirit to every set, valuing creativity, connection, and authenticity in his work.
+                                    </p>
+
+                                    <p>
+                                        In all of his art, Shelvin is interested in capturing the depth of the human experience, the ambition and the struggle, the heartbreak and the triumph, the loneliness and the belonging. He believes film and theatre have the power to inspire people, bridge cultures, and remind us what it means to truly feel seen.
+                                    </p>
+
+                                    <div className="stats">
+
+                                        <div className="stat-item">
+                                            <div className="stat-number">05+</div>
+                                            <div className="stat-label">
+                                                Years Experience
+                                            </div>
+                                        </div>
+
+                                        <div className="stat-item">
+                                            <div className="stat-number">02+</div>
+                                            <div className="stat-label">
+                                                Movies
+                                            </div>
+                                        </div>
+
+                                        <div className="stat-item">
+                                            <div className="stat-number">04+</div>
+                                            <div className="stat-label">
+                                                Countries
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* PROJECTS */}
+
+                    <section id="projects">
+                        <div className="container">
+
+                            <h2>My Projects</h2>
+
+                            <div className="projects-grid">
+
+                                {projects.map((project) => (
+
+                                    <div
+                                        key={project.id}
+                                        className="project-card"
+                                    >
+
+                                        <div className="project-image">
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                            />
+                                        </div>
+
+                                        <div className="project-info">
+                                            <a href={project.trailer}> <h3>{project.title} </h3> </a>
+
+
+                                            <p>{project.description}</p>
+
+
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* HIGHLIGHTS */}
+
+                    <section id="highlights">
+                        <div className="container">
+
+                            {highlightsItems.map((item, index) => (
+
+                                <div
+                                    className="highlights-container"
+                                    key={item.id}
+                                >
+
+                                    {index % 2 === 0 ? (
+                                        <>
+                                            <div className="highlights-image-1">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                />
+                                            </div>
+
+                                            <div className="highlights-content">
+
+                                                <div className="highlights-label">
+                                                    {item.label}
+                                                </div>
+
+                                                <h2>{item.title}</h2>
+
+                                                <p>{item.description}</p>
+
+                                                <a
+                                                    href="gallery.html"
+                                                    className="highlights-link"
+                                                >
+                                                    View Gallery →
+                                                </a>
+
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="highlights-content">
+
+                                                <div className="highlights-label">
+                                                    {item.label}
+                                                </div>
+
+                                                <h2>{item.title}</h2>
+
+                                                <p>{item.description}</p>
+
+                                                <a
+                                                    href="https://ibctamil-com.translate.goog/article/jaffna-native-boy-wins-best-actor-award-1747930201?_x_tr_sl=ta&_x_tr_tl=en&_x_tr_hl=en-GB"
+                                                    className="highlights-link"
+                                                >
+                                                    Read Article →
+                                                </a>
+
+                                            </div>
+
+                                            <div className="highlights-image">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+
+                                </div>
+                            ))}
+
+                        </div>
+                    </section>
+
+                    {/* CONTACT */}
+
+                    <section id="contact">
+
+                        <div className="contact-container">
+
+                            <div className="contact-layout">
+
+                                {/* LEFT SIDE */}
+
+                                <div className="contact-info">
+
+                                    <h2>Get In Touch</h2>
+
+                                    <p>
+                                        For collaborations, casting inquiries,
+                                        film projects, media appearances,
+                                        or creative partnerships.
+                                    </p>
+
+                                    <div className="social-links">
+
+                                        <a
+                                            href="https://www.instagram.com/shelvin_das/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="social-icon"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="18"
+                                                height="18"
+                                                fill="currentColor"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                            </svg>
+                                        </a>
+
+                                        <a
+                                            href="https://www.facebook.com/anies.slvin.5/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="social-icon"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="18"
+                                                height="18"
+                                                fill="currentColor"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                            </svg>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                                {/* RIGHT SIDE */}
+
+                                <form className="contact-form">
+
+                                    <div className="form-row">
+
+                                        <div className="form-group">
+                                            <label>First Name</label>
+
+                                            <input
+                                                type="text"
+                                                placeholder="Your first name"
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Last Name</label>
+
+                                            <input
+                                                type="text"
+                                                placeholder="Your last name"
+                                            />
+                                        </div>
+
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Email</label>
+
+                                        <input
+                                            type="email"
+                                            placeholder="your@email.com"
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Subject</label>
+
+                                        <input
+                                            type="text"
+                                            placeholder="Project inquiry"
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Message</label>
+
+                                        <textarea
+                                            rows="6"
+                                            placeholder="Write your message..."
+                                        ></textarea>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        className="contact-btn"
+                                    >
+                                        Send Message
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </section>                </>
+            );
+        }
+
+        ReactDOM
+            .createRoot(document.getElementById("root"))
+            .render(<PortfolioApp />);
+    </script>
+</body>
+
+</html>

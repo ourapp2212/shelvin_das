@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Theme Variables */
+    :root {
+      --bg-dark: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #b8b8b8;
+      --accent: #d97757;
+      --accent-dark: #c56647;
+      --accent-light: #e8936d;
+      --border: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+    }
+
+    nav .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    }
+
+
+    /* --- Portfolio Header --- */
+    .portfolio-header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .model-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+
+    /* Model Measurements/Stats Line */
+    .model-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .stat-item {
+      display: flex;
+      gap: 8px;
+    }
+
+    .stat-label {
+      font-weight: 500;
+      color: var(--accent);
+      /* Using the accent color for data labels */
+    }
+
+    .model-bio {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* --- Pinterest-Style Masonry Grid --- */
+    .masonry-grid {
+      column-count: 4;
+      column-gap: 20px;
+      padding: 0 40px 80px;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    /* Individual Image Card */
+    .grid-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 6px;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+
+    .grid-item:hover {
+      border-color: var(--accent-dark);
+    }
+
+    .grid-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity: 0.9;
+      /* Slight dim to fit the dark theme */
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.03);
+      opacity: 1;
+    }
+
+    /* Hover Overlay */
+    .item-overlay {
+      position: absolute;
+      inset: 0;
+      /* Dark gradient to ensure text readability */
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .grid-item:hover .item-overlay {
+      opacity: 1;
+    }
+
+    .item-info h3 {
+      color: var(--text-primary);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .item-info p {
+      color: var(--accent-light);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Placeholder heights to simulate masonry layout */
+    .h-tall {
+      aspect-ratio: 2/3;
+    }
+
+    .h-short {
+      aspect-ratio: 4/5;
+    }
+
+    .h-xl {
+      aspect-ratio: 9/16;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      .masonry-grid {
+        column-count: 3;
+      }
+
+      .model-name {
+        font-size: 4rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .masonry-grid {
+        column-count: 2;
+        padding: 0 20px 40px;
+      }
+
+      .model-stats {
+        gap: 12px 20px;
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 0;
+      }
+
+      .model-name {
+        font-size: 3rem;
+      }
+
+      .portfolio-header {
+        padding: 50px 20px 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container">
+
+      <a href="index.html#home" class="logo">
+        SHELVIN DAS
+      </a>
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="index.html#home">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="index.html#about">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a href="index.html#projects">
+            Projects
+          </a>
+        </li>
+
+        <li>
+          <a href="index.html#highlights">
+            Highlights
+          </a>
+        </li>
+
+        <li>
+          <a href="index.html#contact">
+            Contact
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Model Portfolio Header -->
+  <header class="portfolio-header">
+    <h1 class="model-name">Gallery</h1>
+
+    <!-- Professional Model Measurements Line -->
+    <div class="model-stats">
+      <div class="stat-item"><span class="stat-label">HT</span> 5'8"</div>
+      <div class="stat-item"><span class="stat-label">CHEST</span> 38"</div>
+      <div class="stat-item"><span class="stat-label">WAIST</span> 31"</div>
+      <div class="stat-item"><span class="stat-label">SHOE</span> 10</div>
+      <div class="stat-item"><span class="stat-label">HAIR</span> BLACK</div>
+      <div class="stat-item"><span class="stat-label">EYES</span> BLACK</div>
+    </div>
+
+    <p class="model-bio">
+      Represented globally. A curated selection of high-fashion editorials, international campaigns, and cinematic stage
+      performances.
+    </p>
+  </header>
+
+  <!-- Pinterest-Style Masonry Grid -->
+  <main class="masonry-grid">
+
+    <div class="grid-item h-tall">
+      <img src="Das1.jpeg" alt="Editorial Cover" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Koothadi</h3>
+          <p>Character Profile</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-short">
+      <img src="Das2.jpeg" alt="Studio Portrait" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Koothadi</h3>
+          <p>Character Profile</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-xl">
+      <img src="Das3.jpeg" alt="Runway Look" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Studio Series</h3>
+          <p>Photoshoot</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-tall">
+      <img src="Das4.jpeg" alt="Commercial Campaign" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Studio Series</h3>
+          <p>Photoshoot</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-xl">
+      <img src="Das5.jpeg" alt="Character Study" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Wild Buffalo</h3>
+          <p>Character Profile</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-short">
+      <img src="Das6.jpeg" alt="Street Style" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Wild Buffalo</h3>
+          <p>Character Profile</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-tall">
+      <img src="Das7.jpeg" alt="Avant Garde" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Backstage</h3>
+          <p>Unfiltered Moments</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-short">
+      <img src="Das8.jpeg" alt="Backstage" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Backstage</h3>
+          <p>Unfiltered Moments</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
