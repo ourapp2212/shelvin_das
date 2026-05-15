@@ -634,6 +634,10 @@
                     toast.innerText = "Message sent successfully!";
                     toast.classList.add("show");
 
+                    Object.keys(parms).forEach(key => {
+                    document.getElementById(key).value = "";
+                    });
+
                     setTimeout(() => {
                         toast.classList.remove("show");
                     }, 3000);
