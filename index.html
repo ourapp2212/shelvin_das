@@ -4,13 +4,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shelvin Das - Actor & Director Portfolio</title>
+    <title>Shelvin Das - Actor & Producer</title>
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "vzcIW0hSoToEmNgP0",
+            });
+        })();
+    </script>
 
 </head>
 
@@ -79,7 +90,27 @@
                     image: "achievements.jpeg",
                     description:
                         "At the ATFIA (Australian Talent & Film International Awards) 2025, Jaffna-born actor Shelvin Das received the prestigious Best Actor award in recognition of his powerful performance, marking a significant milestone in his journey as an international stage and screen artist."
-                }
+                },
+
+                {
+                    id: 3,
+                    title: "Recognition from Federal MP Hon. Ash Ambihaipahar",
+                    label: "Achievements",
+                    image: "achievements-2.jpeg",
+                    description:
+                        "Tamil Film Association Australia (TFAA) Inc. met Federal MP Ash Ambihaipahar in Kogarah, Sydney, to discuss the cultural significance of the Tamil feature film “Koothadi.” During the meeting, Mr. Ravi and actor-producer Shelvin Das honoured the MP with a traditional Ponnadai, while Hon. Ash recognised Shelvin Das for his contribution to preserving Tamil theatre, folk arts, and cultural heritage through the film. Hon. Ash also encouraged the Tamil community and younger generations to watch “Koothadi” and support the preservation of traditional village arts and cultural identity."
+                },
+
+                {
+                    id: 4,
+                    title: "Kuviyam Best Actor Award 2025",
+                    label: "Achievements",
+                    image: "achievements-3.png",
+                    description:
+                        "At the Kuviyam Awards 2025, Shelvin Das received the prestigious Best Actor – Male award for his outstanding performance in Koothadi. This remarkable recognition reflects his exceptional acting talent and dedication to the film industry, further strengthening his presence as an emerging international stage and screen artist."
+                },
+
+
             ];
 
             const scrollToSection = (sectionId) => {
@@ -198,7 +229,7 @@
                                 </div>
 
                                 <p>
-                                    Shelvin Das is an actor and producer originally born in Sri Lanka who later moved to Australia, carrying with him a deep love for storytelling, culture, and human connection. His journey into acting began through side gigs and independent projects, where he discovered a passion for stepping into characters that feel raw, honest, and unforgettable. Through dedication, persistence, and heart, Shelvin went on to become the lead hero in two feature films ,  a milestone that reflects both his talent and his commitment to the craft.
+                                    Shelvin Das is an actor and producer originally born in Sri Lanka who later moved to Australia, carrying with him a deep love for storytelling, culture, and human connection. His journey into acting began through side gigs and independent projects, where he discovered a passion for stepping into characters that feel raw, honest, and unforgettable. Through dedication, persistence, and heart, Shelvin went on to become the lead hero in two feature films,  a milestone that reflects both his talent and his commitment to the craft.
                                 </p>
 
                                 <div className="cta-buttons">
@@ -248,7 +279,11 @@
                                     <h2>About Me</h2>
 
                                     <p>
-                                        As an actor, Shelvin is drawn to stories that explore emotion, identity, resilience, and transformation. He enjoys playing characters with intensity and vulnerability, while also embracing humor, charm, and larger-than-life moments. He brings an energetic, grounded, and collaborative spirit to every set, valuing creativity, connection, and authenticity in his work.
+                                        As an actor, Shelvin Das is drawn to stories that explore emotion, identity, resilience, and transformation. He enjoys playing characters with intensity and vulnerability, while also embracing humor, charm, and larger-than-life moments. He brings an energetic, grounded, and collaborative spirit to every set, valuing creativity, connection, and authenticity in his work.
+                                    </p>
+
+                                    <p>
+                                        Having worked across international productions in India, Sri Lanka, Australia, and Malaysia, Shelvin continues to expand his artistic journey through diverse cinematic and theatrical experiences that connect cultures and audiences worldwide.
                                     </p>
 
                                     <p>
@@ -265,7 +300,7 @@
                                         </div>
 
                                         <div className="stat-item">
-                                            <div className="stat-number">02+</div>
+                                            <div className="stat-number">05+</div>
                                             <div className="stat-label">
                                                 Movies
                                             </div>
@@ -328,68 +363,110 @@
 
                             {highlightsItems.map((item, index) => (
 
-                                <div
-                                    className="highlights-container"
-                                    key={item.id}
-                                >
+                                <div className="highlights-container" key={item.id}>
 
-                                    {index % 2 === 0 ? (
-                                        <>
-                                            <div className="highlights-image-1">
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                />
-                                            </div>
+                                    {(() => {
 
-                                            <div className="highlights-content">
+                                        // Layout 1 (first item)
+                                        if (index === 0) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-image-1">
+                                                        <img src={item.image} alt={item.title} />
+                                                    </div>
 
-                                                <div className="highlights-label">
-                                                    {item.label}
-                                                </div>
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
 
-                                                <h2>{item.title}</h2>
+                                                        <a href="gallery.html" className="highlights-link">
+                                                            View Gallery →
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            );
+                                        }
 
-                                                <p>{item.description}</p>
+                                        // Layout 2 (second item)
+                                        if (index === 1) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
 
-                                                <a
-                                                    href="gallery.html"
-                                                    className="highlights-link"
-                                                >
-                                                    View Gallery →
-                                                </a>
+                                                        <a
+                                                            href="https://ibctamil-com.translate.goog/article/jaffna-native-boy-wins-best-actor-award-1747930201?_x_tr_sl=ta&_x_tr_tl=en&_x_tr_hl=en-GB"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            Read Article →
+                                                        </a>
+                                                    </div>
 
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <div className="highlights-content">
+                                                    <div className="highlights-image">
+                                                        <img src={item.image} alt={item.title} />
+                                                    </div>
+                                                </>
+                                            );
+                                        }
 
-                                                <div className="highlights-label">
-                                                    {item.label}
-                                                </div>
+                                        // Layout 3 (third item)
+                                        if (index === 2) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-image-1">
+                                                        <img src={item.image} alt={item.title} />
+                                                    </div>
 
-                                                <h2>{item.title}</h2>
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
 
-                                                <p>{item.description}</p>
+                                                        <a
+                                                            href="https://www.facebook.com/tamiltimesaustralia/posts/voice-of-tamil-culture-in-australian-parliament-mp-ash-ambigaipakar-honoured-the/122148010832989279/"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            View Post →
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            );
+                                        }
 
-                                                <a
-                                                    href="https://ibctamil-com.translate.goog/article/jaffna-native-boy-wins-best-actor-award-1747930201?_x_tr_sl=ta&_x_tr_tl=en&_x_tr_hl=en-GB"
-                                                    className="highlights-link"
-                                                >
-                                                    Read Article →
-                                                </a>
+                                        // Layout 4 (fourth item)
+                                        if (index === 3) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
 
-                                            </div>
+                                                        <a
+                                                            href="https://www.facebook.com/watch/?v=763624899802756"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            View Post →
+                                                        </a>
+                                                    </div>
 
-                                            <div className="highlights-image">
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                />
-                                            </div>
-                                        </>
-                                    )}
+                                                    <div className="highlights-image">
+                                                        <img src={item.image} alt={item.title} />
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+
+                                    })()}
 
                                 </div>
                             ))}
@@ -468,6 +545,7 @@
                                             <input
                                                 type="text"
                                                 placeholder="Your first name"
+                                                id="fname"
                                             />
                                         </div>
 
@@ -477,6 +555,7 @@
                                             <input
                                                 type="text"
                                                 placeholder="Your last name"
+                                                id="lname"
                                             />
                                         </div>
 
@@ -488,6 +567,7 @@
                                         <input
                                             type="email"
                                             placeholder="your@email.com"
+                                            id="email"
                                         />
                                     </div>
 
@@ -497,6 +577,7 @@
                                         <input
                                             type="text"
                                             placeholder="Project inquiry"
+                                            id="subject"
                                         />
                                     </div>
 
@@ -506,12 +587,14 @@
                                         <textarea
                                             rows="6"
                                             placeholder="Write your message..."
+                                            id="message"
                                         ></textarea>
                                     </div>
 
                                     <button
-                                        type="submit"
+                                        type="button"
                                         className="contact-btn"
+                                        onClick={sendMail}
                                     >
                                         Send Message
                                     </button>
@@ -521,13 +604,61 @@
                             </div>
 
                         </div>
+                        <div id="toast" className="toast">
+                            Mail sent successfully!
+                        </div>
                     </section>                </>
             );
         }
 
+        function sendMail() {
+
+            let parms = {
+                fname: document.getElementById("fname").value,
+                lname: document.getElementById("lname").value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value,
+            };
+
+            emailjs
+                .send(
+                    "service_y5yvmq6",
+                    "template_s7s9g3e",
+                    parms
+                )
+                .then(() => {
+
+                    const toast = document.getElementById("toast");
+
+                    toast.innerText = "Message sent successfully!";
+                    toast.classList.add("show");
+
+                    setTimeout(() => {
+                        toast.classList.remove("show");
+                    }, 3000);
+
+                })
+                .catch((error) => {
+
+                    console.log(error);
+
+                    const toast = document.getElementById("toast");
+
+                    toast.innerText = "Failed to send message";
+                    toast.classList.add("show");
+
+                    setTimeout(() => {
+                        toast.classList.remove("show");
+                    }, 3000);
+
+                });
+        }
         ReactDOM
             .createRoot(document.getElementById("root"))
             .render(<PortfolioApp />);
+
+
     </script>
 </body>
 
