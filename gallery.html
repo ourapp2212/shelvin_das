@@ -107,9 +107,9 @@
     }
 
     .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
     }
 
 
@@ -169,55 +169,62 @@
     }
 
     /* --- Pinterest-Style Masonry Grid --- */
+    /* --- Improved Masonry Grid --- */
     .masonry-grid {
       column-count: 4;
-      column-gap: 20px;
-      padding: 0 40px 80px;
-      max-width: 1800px;
+      column-gap: 18px;
+      padding: 0 32px 80px;
+      max-width: 1700px;
       margin: 0 auto;
     }
 
-    /* Individual Image Card */
     .grid-item {
       break-inside: avoid;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      border-radius: 6px;
+      border-radius: 10px;
       background-color: var(--bg-secondary);
-      border: 1px solid var(--border);
-      transition: border-color 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease;
     }
 
     .grid-item:hover {
-      border-color: var(--accent-dark);
+      border-color: var(--accent);
+      transform: translateY(-4px);
     }
 
     .grid-item img {
       width: 100%;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      opacity: 0.9;
-      /* Slight dim to fit the dark theme */
+      object-fit: cover;
+      transition:
+        transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.4s ease;
+      opacity: 0.92;
     }
 
     .grid-item:hover img {
-      transform: scale(1.03);
+      transform: scale(1.04);
       opacity: 1;
     }
 
-    /* Hover Overlay */
+    /* Cleaner overlay */
     .item-overlay {
       position: absolute;
       inset: 0;
-      /* Dark gradient to ensure text readability */
-      background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 50%);
+      background: linear-gradient(to top,
+          rgba(0, 0, 0, 0.88) 0%,
+          rgba(0, 0, 0, 0.15) 55%,
+          transparent 100%);
       opacity: 0;
       transition: opacity 0.3s ease;
       display: flex;
       align-items: flex-end;
-      padding: 24px;
+      padding: 22px;
     }
 
     .grid-item:hover .item-overlay {
@@ -225,38 +232,49 @@
     }
 
     .item-info h3 {
-      color: var(--text-primary);
+      color: white;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
       font-style: italic;
-      font-size: 1.5rem;
-      margin-bottom: 4px;
+      font-size: 1.45rem;
+      margin-bottom: 2px;
     }
 
     .item-info p {
       color: var(--accent-light);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
     }
 
-    /* Placeholder heights to simulate masonry layout */
+    /* Better image proportions */
     .h-tall {
-      aspect-ratio: 2/3;
+      aspect-ratio: 2 / 3;
     }
 
     .h-short {
-      aspect-ratio: 4/5;
+      aspect-ratio: 4 / 5;
     }
 
     .h-xl {
-      aspect-ratio: 9/16;
+      aspect-ratio: 9 / 14;
     }
 
-    /* Responsive Adjustments */
-    @media (max-width: 1200px) {
+    .h-wide {
+      aspect-ratio: 5 / 4;
+    }
+
+    /* Responsive */
+    @media (max-width: 1300px) {
       .masonry-grid {
         column-count: 3;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .masonry-grid {
+        column-count: 2;
+        padding: 0 18px 50px;
       }
 
       .model-name {
@@ -264,31 +282,21 @@
       }
     }
 
-    @media (max-width: 900px) {
-      .masonry-grid {
-        column-count: 2;
-        padding: 0 20px 40px;
-      }
-
-      .model-stats {
-        gap: 12px 20px;
-        font-size: 0.65rem;
-      }
-    }
-
     @media (max-width: 600px) {
       .masonry-grid {
         column-count: 1;
         column-gap: 0;
+        padding: 0 16px 40px;
       }
 
       .model-name {
         font-size: 3rem;
       }
+    
 
-      .portfolio-header {
-        padding: 50px 20px 40px;
-      }
+    .portfolio-header {
+      padding: 50px 20px 40px;
+    }
     }
   </style>
 </head>
@@ -382,11 +390,11 @@
     </div>
 
     <div class="grid-item h-xl">
-      <img src="Das3.jpeg" alt="Runway Look" style="height: 100%; object-fit: cover;">
+      <img src="Das5.jpeg" alt="Runway Look" style="height: 100%; object-fit: cover;">
       <div class="item-overlay">
         <div class="item-info">
-          <h3>Studio Series</h3>
-          <p>Photoshoot</p>
+          <h3>Wild Buffalo</h3>
+          <p>Character Profile</p>
         </div>
       </div>
     </div>
@@ -402,11 +410,11 @@
     </div>
 
     <div class="grid-item h-xl">
-      <img src="Das5.jpeg" alt="Character Study" style="height: 100%; object-fit: cover;">
+      <img src="Das3.jpeg" alt="Character Study" style="height: 100%; object-fit: cover;">
       <div class="item-overlay">
         <div class="item-info">
-          <h3>Wild Buffalo</h3>
-          <p>Character Profile</p>
+          <h3>Studio Series</h3>
+          <p>Photoshoot</p>
         </div>
       </div>
     </div>
@@ -437,6 +445,46 @@
         <div class="item-info">
           <h3>Backstage</h3>
           <p>Unfiltered Moments</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-tall">
+      <img src="forestdas1.jpeg" alt="ATFIA" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Unfiltered Moments</h3>
+          <p>Nature photoshoot</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-xl">
+      <img src="Atfia2.jpeg" alt="ATFIA" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Onstage</h3>
+          <p>ATFIA Awards</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-wide">
+      <img src="Atfia1.jpeg" alt="Forest" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Onstage</h3>
+          <p>ATFIA Awards</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item h-tall">
+      <img src="forestdas2.jpeg" alt="Forest" style="height: 100%; object-fit: cover;">
+      <div class="item-overlay">
+        <div class="item-info">
+          <h3>Unfiltered Moments</h3>
+          <p>Nature photoshoot</p>
         </div>
       </div>
     </div>
