@@ -43,11 +43,10 @@
 
     <meta property="og:type" content="website">
 
-    
-
     <meta property="og:title" content="Shelvin Das | Actor & Producer Portfolio">
 
-    <meta property="og:description" content="Official portfolio of actor Shelvin Das featuring gallery, highlights and acting work.">
+    <meta property="og:description"
+        content="Official portfolio of actor Shelvin Das featuring gallery, highlights and acting work.">
 
     <meta property="og:url" content="https://shelvindas.com">
 
@@ -155,10 +154,30 @@
                     label: "Achievements",
                     image: "shelvin-das-kuviyam-best-actor-award.png",
                     alt: "Shelvin Das receiving Kuviyam Best Actor Award 2025",
-
                     description:
                         "At the Kuviyam Awards 2025, Shelvin Das received the prestigious Best Actor – Male award for his outstanding performance in Koothadi. This remarkable recognition reflects his exceptional acting talent and dedication to the film industry, further strengthening his presence as an emerging international stage and screen artist."
                 },
+
+                {
+                    id: 5,
+                    title: "Recognition from Hon Dr Andrew Charlton MP",
+                    label: "Achievements",
+                    image: "hon-dr-andrew-charlton-mp-shelvin-das-recognition.png",
+                    alt: "Hon Dr Andrew Charlton MP recognising Shelvin Das",
+                    description:
+                        "Hon. Dr. Andrew Charlton MP, Member for Parramatta (Australian Labor Party), met with producer and actor Shelvin Das to recognise his contribution to Tamil cinema through the feature film “Koothadi.” During the meeting, Hon. Dr. Andrew Charlton commended Shelvin Das and the film team for showcasing Sri Lankan Tamil storytelling and artistic excellence on an international stage, acknowledging the film's cultural significance and its role in promoting Tamil arts and heritage through world-class filmmaking"
+                },
+
+                {
+                    id: 6,
+                    title: "Recognition from NSW Deputy Premier Prue Car",
+                    label: "Achievements",
+                    image: "nsw-deputy-premier-prue-car-recognising-shelvin-das.png",
+                    alt: "NSW Deputy Premier Prue Car recognising Shelvin Das",
+                    description:
+                        "The Honourable Prue Car, Deputy Premier of New South Wales, attended the 21st annual “Mela Teeyan Da” festival as Chief Guest at Blacktown Leisure Centre, Stanhope Gardens, on 14 June 2026, where she recognised producer and actor Shelvin Das for his outstanding contribution to Tamil cinema through the feature film “Koothadi.” During the event, The Honourable Prue Car congratulated Shelvin Das on receiving a Special Award in recognition of his continued efforts to promote Tamil arts, culture, and storytelling internationally, acknowledging his achievements as a proud representative of the Tamil diaspora."
+                },
+
 
 
             ];
@@ -501,6 +520,58 @@
 
                                                         <a
                                                             href="https://www.facebook.com/watch/?v=763624899802756"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            View Post →
+                                                        </a>
+                                                    </div>
+
+                                                    <div className="highlights-image">
+                                                        <img src={item.image} alt={item.alt} />
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+
+                                        // Layout 5 (fifth item)
+                                        if (index === 4) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-image-1">
+                                                        <img src={item.image} alt={item.alt} />
+                                                    </div>
+
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
+
+                                                        <a
+                                                            href="https://www.facebook.com/ChilliChipsOfficial/photos/1626449256157759"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            View Post →
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+
+                                        // Layout 6 (sixth item)
+                                        if (index === 5) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
+
+                                                        <a
+                                                            href="https://www.facebook.com/malaiyagamlk/photos/2130007657778100/"
                                                             className="highlights-link"
                                                             target="_blank"
                                                             rel="noreferrer"
