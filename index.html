@@ -130,6 +130,15 @@
 
                 {
                     id: 2,
+                    title: "5th Annual Kuviyam Awards",
+                    label: "Achievement",
+                    image: "kuviyam-awards-special-achievement-award.png",
+                    description:
+                        "At the Kuviyam Awards 2026, Shelvin Das received special acheivement award for his outstanding contribution to the Sri Lankan Film Industry."
+                 },
+
+                {
+                    id: 3,
                     title: "ATFIA (Australian Talent & Film International Awards) 2025",
                     label: "Achievements",
                     image: "shelvin-das-atfia-awards.jpeg",
@@ -139,7 +148,7 @@
                 },
 
                 {
-                    id: 3,
+                    id: 4,
                     title: "Recognition from Federal MP Hon. Ash Ambihaipahar",
                     label: "Achievements",
                     image: "federal-mp-hon-ash-ambihaipahar-shelvin-das.jpeg",
@@ -149,7 +158,7 @@
                 },
 
                 {
-                    id: 4,
+                    id: 5,
                     title: "Kuviyam Best Actor Award 2025",
                     label: "Achievements",
                     image: "shelvin-das-kuviyam-best-actor-award.png",
@@ -159,7 +168,7 @@
                 },
 
                 {
-                    id: 5,
+                    id: 6,
                     title: "Recognition from Hon Dr Andrew Charlton MP",
                     label: "Achievements",
                     image: "hon-dr-andrew-charlton-mp-shelvin-das-recognition.png",
@@ -169,7 +178,7 @@
                 },
 
                 {
-                    id: 6,
+                    id: 7,
                     title: "Recognition from NSW Deputy Premier Prue Car",
                     label: "Achievements",
                     image: "nsw-deputy-premier-prue-car-recognising-shelvin-das.png",
@@ -457,8 +466,34 @@
                                             );
                                         }
 
-                                        // Layout 2 (second item)
+                                                            // Layout 5 (fifth item)
                                         if (index === 1) {
+                                            return (
+                                                <>
+                                                    <div className="highlights-image-1">
+                                                        <img src={item.image} alt={item.alt} />
+                                                    </div>
+
+                                                    <div className="highlights-content">
+                                                        <div className="highlights-label">{item.label}</div>
+                                                        <h2>{item.title}</h2>
+                                                        <p>{item.description}</p>
+
+                                                        <a
+                                                            href="https://www.facebook.com/share/p/1Dt3yRUbtJ/"
+                                                            className="highlights-link"
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                        >
+                                                            View Post →
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            );
+                                        }
+
+                                        // Layout 2 (second item)
+                                        if (index === 2) {
                                             return (
                                                 <>
                                                     <div className="highlights-content">
@@ -484,7 +519,7 @@
                                         }
 
                                         // Layout 3 (third item)
-                                        if (index === 2) {
+                                        if (index === 3) {
                                             return (
                                                 <>
                                                     <div className="highlights-image-1">
@@ -510,7 +545,7 @@
                                         }
 
                                         // Layout 4 (fourth item)
-                                        if (index === 3) {
+                                        if (index === 4) {
                                             return (
                                                 <>
                                                     <div className="highlights-content">
@@ -536,7 +571,7 @@
                                         }
 
                                         // Layout 5 (fifth item)
-                                        if (index === 4) {
+                                        if (index === 5) {
                                             return (
                                                 <>
                                                     <div className="highlights-image-1">
@@ -562,7 +597,7 @@
                                         }
 
                                         // Layout 6 (sixth item)
-                                        if (index === 5) {
+                                        if (index === 6) {
                                             return (
                                                 <>
                                                     <div className="highlights-content">
