@@ -351,6 +351,13 @@ p {
     color: var(--text-secondary);
 }
 
+.project-info a.project-event-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
 /* HIGHLIGHTS */
 
 #highlights {
@@ -368,6 +375,11 @@ p {
 
 .highlights-container+.highlights-container {
     margin-top: 6rem;
+}
+
+/* Keep linked highlights clear of the sticky nav */
+.highlights-container[id] {
+    scroll-margin-top: 100px;
 }
 
 .highlights-image {
